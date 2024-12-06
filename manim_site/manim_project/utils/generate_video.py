@@ -1,14 +1,14 @@
 import os
 
 def generate_manim_video(code):
-    # sauvegarder le code dans un fichier temporaire
+    # save script in a temp file
     with open('temp.py', 'w') as f:
         f.write(code)
-    
-    # générer la vidéo avec Manim
-    os.system("manim -pqh temp.py output")
 
-    # supprimer le fichier temporaire
+    # generate the video with manim
+    os.system("manim -qh temp.py output")
+
+    # delete temp file
     os.system("rm temp.py")
 
     return True

@@ -9,7 +9,9 @@ manim_site/
 │   ├── migrations/
 │   ├── static/               # Fichiers statiques (CSS, JS, etc.)
 │   │   ├── css/
+│   │   ├── images/
 │   │   └── js/
+│   ├── templates/            # Fichiers
 │   ├── templates/            # Fichiers HTML
 │   │   └── manim_project/
 │   │       ├── home.html
