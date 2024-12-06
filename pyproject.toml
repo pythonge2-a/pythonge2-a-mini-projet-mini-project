@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "powerplant"
+version = "0.1.0"
+description = "Universal Powerplant is an idle game inspired by Universal Paperclips where the goal is to produce as much energy as possible and sell it for money"
+authors = ["Yann Dos Santos, Can Uluçinar, Leo Porret, Jeremie Djehiche, Pablo Sena"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
