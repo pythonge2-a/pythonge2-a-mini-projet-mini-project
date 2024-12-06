@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
     <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css\styles.css' %}">
 </head>
 <body>
-    <h1>Bienvenue sur le site Manim</h1>
-    <a href="{% url 'edit_code' %}">Aller à l'éditeur de code</a>
+    <h1>Manim-Project</h1>
+    <a href="{% url 'edit_code' %}">Go to manim script editor</a>
 </body>
 </html>
