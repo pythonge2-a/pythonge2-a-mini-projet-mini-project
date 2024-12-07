@@ -11,7 +11,6 @@ manim_site/
 │   │   ├── css/
 │   │   ├── images/
 │   │   └── js/
-│   ├── templates/            # Fichiers
 │   ├── templates/            # Fichiers HTML
 │   │   └── manim_project/
 │   │       ├── home.html

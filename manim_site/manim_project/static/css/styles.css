@@ -1,13 +1,18 @@
+/**
+ * VIDER LE CACHE DU NAVIGATEUR POUR VOIR LES MODIFICATIONS (CTRL + F5)
+ */
+
+ /**
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: "Computer Modern";
+    background-color: rgb(255, 255, 255);
+    color: #07006c;
     margin: 0;
     padding: 20px;
 }
 h1 {
     font-size: 50px;
-    color: #0056b3;
+    color: #000000;
 }
 p {
     font-size: 16px;
@@ -51,9 +56,21 @@ textarea {
     background-color: rgb(0, 0, 101);
 }
 
+**/
 .CodeMirror {
     border: 1px solid #ddd;
-    font-size: 14px;
+    font-size: 13px;
     height: auto;
-    min-height: 200px;
+    min-height: 400px;
+}
+
+body {
+    max-width: 150ch; /* Ajustez cette valeur selon vos besoins */
+    margin: 0 auto;   /* Maintient le contenu centré */
+}
+
+video {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
 }
