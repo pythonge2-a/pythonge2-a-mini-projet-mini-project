@@ -11,14 +11,15 @@
 
 
 <body>
-    <h1>Manim-Project</h1>
+    <h1>Manim-Django-Project</h1>
+    <p class="author">E.Cinelli - C.Grodent - M.Ricchieri - V.Santiago <br> 2024-2025</p>
     <section>
         <h2>Project Goal</h2>
-        <p></p>
+        <p>
             Manim and matplotlib.animation are powerful tools for creating mathematical and educational animations but require Python programming skills, which can be a barrier for many users.
         </p>
         <p>
-            This project aims to make these tools more accessible through an intuitive web platform. The platform will offer:
+            This project aims to make these tools more accessible through an intuitive web platform built using Django, a high-level Python web framework. The platform will offer:
         </p>
         <ul>
             <li>Custom Script Submission: Allow users to submit their own Manim or matplotlib scripts.</li>
@@ -27,6 +28,9 @@
         </ul>
         <p>
             The goal is to simplify the creation of educational animations, enabling teachers, students, and content creators to visualize concepts without needing advanced technical skills.
+        </p>
+        <p>
+            This project is developed as part of the Python course at HEIG-VD, utilizing Django to ensure a seamless and user-friendly web experience.
         </p>
     </section>
 
@@ -48,10 +52,9 @@
             In conclusion, graphic supports are a vital complement to written explanations. The insights of Paivio, Mayer, Carney, Levin, and Butcher emphasize the importance of thoughtful visual design and integration into teaching methods. When used appropriately, they can improve memory, foster deeper understanding, and make learning concepts more accessible to all students.
         </p>
     </section>
-    <a href="{% url 'edit_code' %}">Go to manim script editor</a>
 
-    <footer>
-        <p>Developed by CE, GC, RM, VS</p>
-    </footer>
+    <h2>Roadmap</h2>
+    <a href="{% url 'edit_code' %}">Go to manim script editor</a><br>
+    <a href="{% url 'generate_pre_coded_video' %}">Generate pre-coded video</a>
 </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Generate pre-coded video</title>
+
+    <link rel="stylesheet" href="https://latex.vercel.app/style.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Generate pre-coded video</h1>
+    <form method="post" action="{% url 'generate_pre_coded_video' %}">
+        {% csrf_token %}
+        <label for="script_name">Choose a pre-coded script:</label>
+        <p>Blue circle</p>
+        <button type="submit" name="script_name" value="manim_script_1.py">Generate</button>
+    </form>
+</body>
+</html>
