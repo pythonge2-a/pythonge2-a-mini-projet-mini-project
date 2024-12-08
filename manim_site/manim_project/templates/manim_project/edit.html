@@ -14,6 +14,10 @@
 </head>
 <body>
     <h1>Manim Script Editor</h1>
+    <p>You must begin your script with the following lines:</p>
+    <pre><code class="python">from manim import *<br>class output(Scene):</code></pre>
+
+
     <form method="post" action="{% url 'generate_video' %}">
         {% csrf_token %}
         <!-- Textarea target of CodeMirror -->
