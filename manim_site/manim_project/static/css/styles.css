@@ -2,66 +2,22 @@
  * SI LES MODIFICATIONS NE S'AFFICHENT PAS, VIDER LE CACHE DU NAVIGATEUR (CTRL + F5)
  */
 
- /**
-body {
-    font-family: "Computer Modern";
-    background-color: rgb(255, 255, 255);
-    color: #07006c;
-    margin: 0;
-    padding: 20px;
-}
-h1 {
-    font-size: 50px;
-    color: #000000;
-}
-p {
-    font-size: 16px;
-}
-pre {
-    background-color: #e0e0e0;
-    padding: 10px;
-    border-radius: 5px;
-}
-video {
-    border: 2px solid #0056b3;
-    border-radius: 10px;
-}
-
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-button {
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #003d80;
-}
-
-textarea {
-    width: 100%;
-    height: 500px;
-    box-sizing: border-box;
-    font-family: "Courier New", Courier, monospace;
-    color: white;
-    background-color: rgb(0, 0, 101);
-}
-
 **/
 .CodeMirror {
     border: 1px solid #ddd;
     font-size: 13px;
     height: auto;
     min-height: 500px;
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
 }
 
 body {
@@ -73,5 +29,6 @@ body {
 video {
     display: block;
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: 0 14px 14px rgb(133, 133, 133);
 }
