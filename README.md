@@ -75,8 +75,17 @@ Le joueur contrôle une IA programmée pour maximiser la production d'énergie �
 
 ## Installation
 
+Si il y besoin d'installer des dépendances pour la création de classes, vous pouvez utiliser Poetry pour gérer les dépendances du projet. Par exmple, pour installer numpy :
 ```bash
-poetry install # vérifier que poetry est bien installé
+poetry add numpy # ajoute numpy au projet
+poetry show # affiche les dépendances du projet
+...
+```
+
+## Gestion des dépendances
+
+```bash
+poetry add numpy # ajoute 
 poetry run powerplant # lancer le programme
 ...
 ```

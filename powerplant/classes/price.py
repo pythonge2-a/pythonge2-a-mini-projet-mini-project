@@ -29,7 +29,7 @@ class KwhPrice: # génération des prix de l'électricité
 from powerplant.price import KwhPrice 
 
 def main():
-    file_path = "kwh_price.csv"
+    file_path = "assets/kwh_price.csv"
     kwh_price = KwhPrice(file_path)
     print(kwh_price.get_price(0)) # prix du premier jour
     print(kwh_price.get_price(2894)) # prix du dernier jour 
