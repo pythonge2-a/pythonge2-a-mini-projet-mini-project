@@ -1,3 +1,5 @@
+# This file contains the URL patterns for the manim_project application. The URL patterns are used to map URLs to views. The views are the functions that are executed when a user visits a specific URL. The URL patterns are defined using the Django URL dispatcher, which is a Python module that helps to define URL patterns for a Django project. The URL patterns are defined in the urlpatterns list, which is a list of URL patterns. Each URL pattern is defined using the path() function, which takes the URL pattern as the first argument and the view function as the second argument. The URL patterns
+
 from django.urls import path
 from . import views
 

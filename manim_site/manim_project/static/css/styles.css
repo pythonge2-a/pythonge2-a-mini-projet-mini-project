@@ -1,11 +1,21 @@
-/**
+/*
  * SI LES MODIFICATIONS NE S'AFFICHENT PAS, VIDER LE CACHE DU NAVIGATEUR (CTRL + F5)
  */
 
-**/
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 12px;
+    resize: vertical;
+}
+
 .CodeMirror {
     border: 1px solid #ddd;
-    font-size: 13px;
+    font-size: 12px;
     height: auto;
     min-height: 500px;
 }
@@ -21,8 +31,8 @@ h1 {
 }
 
 body {
-    max-width: 150ch;
-    margin: 0 auto;   /* center */
+    max-width: 130ch;
+    margin: 0 auto;
     background-color: #eae1ca;
 }
 
@@ -32,3 +42,35 @@ video {
     border-radius: 20px;
     box-shadow: 0 14px 14px rgb(133, 133, 133);
 }
+
+.loader {
+    width: 100%;
+    height: 4.8px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .loader::after {
+    content: '';  
+    width: 130px;
+    height: 10px;
+    background: #a80000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    animation: hitZak 1.2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes hitZak {
+    0% {
+      left: 0;
+      transform: translateX(-1%);
+    }
+    100% {
+      left: 100%;
+      transform: translateX(-99%);
+    }
+  }
+      
