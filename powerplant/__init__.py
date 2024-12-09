@@ -1,3 +1,3 @@
 class Ouga:
-    def oui(self):
+    def __init__(self):
         print("oui")

@@ -1,5 +1,8 @@
 from powerplant import Ouga
 
-t = Ouga()
-t.oui()
+def main():
+    t = Ouga()
+    
 
+if __name__ == "__main__":
+    main()
