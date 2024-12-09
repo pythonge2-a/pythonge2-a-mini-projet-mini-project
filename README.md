@@ -76,7 +76,8 @@ Le joueur contrôle une IA programmée pour maximiser la production d'énergie �
 ## Installation
 
 ```bash
-poetry install
+poetry install # vérifier que poetry est bien installé
+poetry run powerplant # lancer le programme
 ...
 ```
 
