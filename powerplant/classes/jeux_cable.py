@@ -11,23 +11,28 @@ pygame.mixer.init()
 # Charger le fichier audio avec un chemin absolu et une chaîne brute
 sound_victoire = pygame.mixer.Sound(r"powerplant\fichier_mp3\success-fanfare-trumpets-6185.mp3")
 sound_defaite = pygame.mixer.Sound(r"powerplant\fichier_mp3\failure-1-89170.mp3")
+sound_faux = pygame.mixer.Sound(r"powerplant\fichier_mp3\wrong-47985.mp3")
+sound_juste = pygame.mixer.Sound(r"powerplant\fichier_mp3\electric-155027.mp3")
 
 class JeuDeCablage:
     def __init__(self, root):
         self.root = root
         self.root.title("Mini-jeu : Câblage")
-        self.root.geometry("600x500")
+        nb_points = 6
+        self.root.geometry(f"600x{(nb_points+1)*100}")
 
         # Timer
-        self.time_limit = 5  # secondes
+        self.time_limit = nb_points * 3  # secondes
         self.start_time = time.time()
 
         # Canvas de jeu
-        self.canvas = tk.Canvas(self.root, width=600, height=500, bg="white")
+        self.canvas = tk.Canvas(self.root, width=600, height=(nb_points+1)*100, bg="white")
         self.canvas.pack()
 
         # Points de départ et d'arrivée
-        self.start_points = [(50, 100), (50, 200), (50, 300), (50, 400)]  # Points A
+        # self.start_points = [(50, 100), (50, 200), (50, 300), (50, 400)]  # Points A
+        self.start_points = [(50, y*100) for y in range(1,nb_points+1)]
+        random.shuffle(self.start_points)
 
         # Points d'arrivée et Points led (y associés aux y des points A)
         self.end_points, self.view_Point = self.generate_associated_points(self.start_points)
@@ -41,7 +46,7 @@ class JeuDeCablage:
         self.end_to_view_mapping = dict(zip(self.end_points, self.view_Point))
 
         # Couleurs des câbles et des points
-        self.cable_colors = ["blue", "purple", "orange", "red"]
+        self.cable_colors = ["blue", "purple", "orange", "red", "pink", "brown"]
         self.color_mapping = dict(zip(self.cable_colors, range(len(self.cable_colors))))
 
         # Dessiner les points
@@ -137,7 +142,7 @@ class JeuDeCablage:
 
             # Si les couleurs ne correspondent pas, ne pas valider la connexion
             if self.cable_colors[start_index] != self.cable_colors[end_index]:
-                messagebox.showwarning("Erreur", "La couleur du câble doit correspondre à celle du point d'arrivée!")
+                sound_faux.play()
                 self.canvas.delete("current_line")
                 self.current_start_point = None
                 self.canvas.itemconfig(self.connection_valid[self.current_start_point], fill="red")  # Cercle rouge
@@ -148,6 +153,9 @@ class JeuDeCablage:
 
             # Dessiner le câble final
             self.draw_cable(final_path, self.current_color)
+
+            # music connection
+            sound_juste.play()
 
             # Changer les couleurs des points de départ et d'arrivée pour correspondre à la couleur du câble
             self.canvas.itemconfig(self.start_circles[self.current_start_point], fill=self.current_color)
