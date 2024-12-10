@@ -1,7 +1,6 @@
-from powerplant import * # classe test
+# Importantion de toutes les classes et méthodes
+from powerplant import *
 
-""" #inclure les classes ici "from powerplant.nom_du_fichier import nom_de_la_classe"
-from .classes import price """
 
 def main():
     prix = KwhPrice('assets/kwh_price.csv')
