@@ -24,6 +24,7 @@ class KwhPrice: # génération des prix de l'électricité
             raise IndexError("Erreur indice jour inférieur à 0")
 
         return self.data[day%len(self.data)]
+    
 
 '''Exemple d'utilisation''''''
 from powerplant.price import KwhPrice 

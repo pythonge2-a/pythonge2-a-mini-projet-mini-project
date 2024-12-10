@@ -1,10 +1,13 @@
-from powerplant import Ouga # classe test
+from powerplant import * # classe test
 
-#inclure les classes ici "from powerplant.classes.nom_du_fichier import nom_de_la_classe"
-from powerplant.classes.price import KwhPrice 
+""" #inclure les classes ici "from powerplant.nom_du_fichier import nom_de_la_classe"
+from .classes import price """
 
 def main():
-    test = Ouga()
+    prix = KwhPrice('assets/kwh_price.csv')
+    print(prix.get_price(30))
+    
 
 if __name__ == "__main__":
     main()
+
