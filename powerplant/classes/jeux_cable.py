@@ -1,19 +1,25 @@
 import tkinter as tk
-import time
-import math
 from tkinter import messagebox
+import time
 import random
-from playsound import playsound
+import math
+import pygame
+
+# Initialiser le module mixer de pygame
+pygame.mixer.init()
+
+# Charger le fichier audio avec un chemin absolu et une chaîne brute
+sound_victoire = pygame.mixer.Sound(r"powerplant\fichier_mp3\success-fanfare-trumpets-6185.mp3")
+sound_defaite = pygame.mixer.Sound(r"powerplant\fichier_mp3\failure-1-89170.mp3")
 
 class JeuDeCablage:
     def __init__(self, root):
         self.root = root
         self.root.title("Mini-jeu : Câblage")
         self.root.geometry("600x500")
-        # Jouer un fichier WAV
-        playsound("success-fanfare-trumpets-6185.wav")
+
         # Timer
-        self.time_limit = 60  # secondes
+        self.time_limit = 5  # secondes
         self.start_time = time.time()
 
         # Canvas de jeu
@@ -203,6 +209,8 @@ class JeuDeCablage:
         """Fin du jeu."""
         self.canvas.create_text(300, 250, text="Vous avez réussi !", font=("Arial", 20), fill="green")
         print("Tous les fils connectés avec succès !")
+        # Jouer la musique victoire
+        sound_victoire.play()
         self.root.after(2000, self.root.quit)  # Fermer après 2 secondes
 
     def update_timer(self):
@@ -212,8 +220,15 @@ class JeuDeCablage:
 
         if remaining_time <= 0:
             self.root.title("Temps écoulé !")
-            self.root.quit()  # Fermer la fenêtre
+            sound_defaite.play()
+            self.root.after(2000, self.root.quit)  # Fermer après 2 secondes
         else:
             self.root.title(f"Mini-jeu : Câblage - Temps restant : {int(remaining_time)}s")
             self.root.after(1000, self.update_timer)
+
+# Lancer le jeu
+if __name__ == "__main__":
+    root = tk.Tk()
+    game = JeuDeCablage(root)
+    root.mainloop()
 

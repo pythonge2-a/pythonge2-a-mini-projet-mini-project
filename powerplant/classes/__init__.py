@@ -2,3 +2,4 @@
 # Syntaxe : from.fichier import *
 
 from .price import *
+from .jeux_cable import *
