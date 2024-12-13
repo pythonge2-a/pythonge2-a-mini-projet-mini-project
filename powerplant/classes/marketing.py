@@ -22,6 +22,6 @@ class marketing:
             return 0
         return self.user_price * demand
     
-    def update_user_bank(self, gain):
-        self.bank += gain
+    def update_user_bank(self, demand, storage):    #met à jour la banque utilisateur
+        self.bank += self.get_user_gain(demand, storage)
         return self.bank
