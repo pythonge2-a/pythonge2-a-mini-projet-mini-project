@@ -25,8 +25,9 @@ class JeuDeCablage:
         self.time_limit = nb_points * 3  # secondes
         self.start_time = time.time()
 
-       # Label pour afficher le timer
-        self.timer_label = tk.Label(self.root, text="Temps restant : 0", font=("Arial", 14), bg="white")
+       # Label pour afficher le timer avec un effet de boîte
+        self.timer_label = tk.Label(self.root, text="Temps restant : 0", font=("Arial", 14), bg="grey",
+                            borderwidth=2, relief="solid", padx=10, pady=5)
         self.timer_label.pack(pady=10)
 
         # Canvas de jeu
