@@ -11,6 +11,7 @@ python = "^3.13"
 pandas = "^2.2.3"
 numpy = "^2.2.0"
 pygame = "^2.6.1"
+customtkinter = "^5.2.2"
 
 [build-system]
 requires = ["poetry-core"]
