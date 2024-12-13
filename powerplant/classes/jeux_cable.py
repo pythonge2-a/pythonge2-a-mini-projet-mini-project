@@ -9,10 +9,10 @@ import pygame
 pygame.mixer.init()
 
 # Charger le fichier audio avec un chemin absolu et une chaîne brute
-sound_victoire = pygame.mixer.Sound(r"powerplant\fichier_mp3\success-fanfare-trumpets-6185.mp3")
-sound_defaite = pygame.mixer.Sound(r"powerplant\fichier_mp3\failure-1-89170.mp3")
-sound_faux = pygame.mixer.Sound(r"powerplant\fichier_mp3\wrong-47985.mp3")
-sound_juste = pygame.mixer.Sound(r"powerplant\fichier_mp3\electric-155027.mp3")
+sound_victoire = pygame.mixer.Sound(r"assets\fichier_mp3\success-fanfare-trumpets-6185.mp3")
+sound_defaite = pygame.mixer.Sound(r"assets\fichier_mp3\failure-1-89170.mp3")
+sound_faux = pygame.mixer.Sound(r"assets\fichier_mp3\wrong-47985.mp3")
+sound_juste = pygame.mixer.Sound(r"assets\fichier_mp3\electric-155027.mp3")
 
 class JeuDeCablage:
     def __init__(self, root):
@@ -74,8 +74,12 @@ class JeuDeCablage:
         popup.title("Popup Personnalisée")
         popup.geometry("300x150")  # Taille de la popup
 
-        # Modifier le fond de la fenêtre
-        popup.config(bg="lightblue")  # Changer la couleur de fond
+        # Créer une fenêtre
+        fenetre = tk.Tk()
+        fenetre.title("Changer le fond")
+
+        # Modifier la couleur de fond   
+        fenetre.configure(bg="lightblue")
 
         # Ajouter un texte dans la popup
         label = tk.Label(popup, text="Ceci est une popup avec un fond personnalisé.", bg="lightblue")
