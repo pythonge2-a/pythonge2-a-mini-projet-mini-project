@@ -25,22 +25,25 @@ class JeuDeCablage:
         self.time_limit = nb_points * 3  # secondes
         self.start_time = time.time()
 
+       # Label pour afficher le timer
+        self.timer_label = tk.Label(self.root, text="Temps restant : 0", font=("Arial", 14), bg="white")
+        self.timer_label.pack(pady=10)
+
         # Canvas de jeu
         self.canvas = tk.Canvas(self.root, width=600, height=(nb_points+1)*100, bg="white")
         self.canvas.pack()
 
         # Points de départ et d'arrivée
-        # self.start_points = [(50, 100), (50, 200), (50, 300), (50, 400)]  # Points A
-        self.start_points = [(50, y*100) for y in range(1,nb_points+1)]
+        self.start_points = [(50, y*100) for y in range(1, nb_points+1)]
         random.shuffle(self.start_points)
 
         # Points d'arrivée et Points led (y associés aux y des points A)
         self.end_points, self.view_Point = self.generate_associated_points(self.start_points)
 
-        self.start_circles = {}  # Garde la trace des objets graphiques des points de départ
-        self.end_circles = {}  # Garde la trace des objets graphiques des points d'arrivée
-        self.view_circles = {}  # Garde la trace des objets graphiques des points led
-        self.connection_valid = {}  # Garde la validité de la connexion
+        self.start_circles = {}
+        self.end_circles = {}
+        self.view_circles = {}
+        self.connection_valid = {}
 
         # Mappage des points d'arrivée aux points de visualisation
         self.end_to_view_mapping = dict(zip(self.end_points, self.view_Point))
@@ -55,10 +58,10 @@ class JeuDeCablage:
         self.draw_points(self.view_Point, ["red" for i in range(len(self.view_Point))], "view", self.view_circles)
 
         # Variables pour le tracé
-        self.current_path = []  # Liste des segments de la ligne actuelle
-        self.current_start_point = None  # Point de départ en cours
-        self.lines_connected = 0  # Nombre de connexions réussies
-        self.all_paths = []  # Liste des chemins terminés
+        self.current_path = []
+        self.current_start_point = None
+        self.lines_connected = 0
+        self.all_paths = []
 
         # Événements
         self.canvas.tag_bind("start", "<Button-1>", self.start_drag)
@@ -68,33 +71,9 @@ class JeuDeCablage:
         # Timer
         self.update_timer()
 
-    def show_custom_popup():
-        # Créer une fenêtre popup personnalisée
-        popup = tk.Toplevel()
-        popup.title("Popup Personnalisée")
-        popup.geometry("300x150")  # Taille de la popup
-
-        # Créer une fenêtre
-        fenetre = tk.Tk()
-        fenetre.title("Changer le fond")
-
-        # Modifier la couleur de fond   
-        fenetre.configure(bg="lightblue")
-
-        # Ajouter un texte dans la popup
-        label = tk.Label(popup, text="Ceci est une popup avec un fond personnalisé.", bg="lightblue")
-        label.pack(pady=20)
-
-        # Ajouter un bouton pour fermer la popup
-        close_button = tk.Button(popup, text="Fermer", command=popup.destroy)
-        close_button.pack()
-
     def generate_associated_points(self, start_points):
         """Associe les points B et led aux positions y des points A."""
-        # Extraire les positions y des points de départ
         start_y_positions = [point[1] for point in start_points]
-
-        # Mélanger aléatoirement les positions y pour les points B et view
         random.shuffle(start_y_positions)
 
         # Associer les y mélangés aux points d'arrivée et led
@@ -118,16 +97,11 @@ class JeuDeCablage:
             if self.is_inside_circle(event.x, event.y, point, 10):
                 self.current_start_point = point
                 self.current_color = self.cable_colors[i]  # Attribuer une couleur unique
-                # self.connection_valid[point] = self.canvas.create_oval(
-                #     point[0] - 15, point[1] - 15, point[0] + 15, point[1] + 15,
-                #     fill="red", outline="black", width=2, tags="connection_check"
-                # )  # Cercle de vérification
                 break
 
     def drag_line(self, event):
         """Permet un aperçu dynamique de la courbe du câble."""
         if self.current_start_point:
-            # Calcule une courbe réaliste
             preview_path = self.calculate_cable_path(self.current_start_point, (event.x, event.y))
             self.canvas.delete("current_line")
             self.draw_cable(preview_path, self.current_color, "current_line")
@@ -137,50 +111,38 @@ class JeuDeCablage:
         if not self.current_start_point:
             return
 
-        # Trouver le point d'arrivée le plus proche
         end_point = self.get_closest_end_point(event.x, event.y)
         if end_point:
-            # Vérifier si la couleur du câble correspond à la couleur de l'arrivée
             start_index = self.start_points.index(self.current_start_point)
             end_index = self.end_points.index(end_point)
 
-            # Si les couleurs ne correspondent pas, ne pas valider la connexion
+            # Vérification de la couleur du câble
             if self.cable_colors[start_index] != self.cable_colors[end_index]:
                 sound_faux.play()
                 self.canvas.delete("current_line")
                 self.current_start_point = None
-                self.canvas.itemconfig(self.connection_valid[self.current_start_point], fill="red")  # Cercle rouge
                 return
 
-            # Calcul de la courbe finale
             final_path = self.calculate_cable_path(self.current_start_point, end_point)
-
-            # Dessiner le câble final
             self.draw_cable(final_path, self.current_color)
 
-            # music connection
             sound_juste.play()
 
-            # Changer les couleurs des points de départ et d'arrivée pour correspondre à la couleur du câble
             self.canvas.itemconfig(self.start_circles[self.current_start_point], fill=self.current_color)
             self.canvas.itemconfig(self.end_circles[end_point], fill=self.current_color)
 
-            # Mettre à jour les points et les connexions
             self.start_points.remove(self.current_start_point)
             self.end_points.remove(end_point)
             self.cable_colors.remove(self.current_color)
             self.lines_connected += 1
 
-            # Utilisation du dictionnaire pour accéder à view_Point
             view_point = self.end_to_view_mapping.get(end_point)
             if view_point:
                 self.canvas.itemconfig(self.view_circles[view_point], fill="green")
 
-        # Réinitialiser
         self.current_start_point = None
         self.canvas.delete("current_line")
 
-        # Vérifier si toutes les connexions sont faites
         if self.lines_connected == len(self.start_circles):
             self.end_game()
 
@@ -193,7 +155,6 @@ class JeuDeCablage:
         for i in range(segments + 1):
             t = i / segments
             x = x1 + (x2 - x1) * t
-            # Simuler une gravité : les points intermédiaires descendent légèrement
             y = y1 + (y2 - y1) * t + math.sin(t * math.pi) * gravity
             path.append((x, y))
 
@@ -220,10 +181,8 @@ class JeuDeCablage:
     def end_game(self):
         """Fin du jeu."""
         self.canvas.create_text(300, 250, text="Vous avez réussi !", font=("Arial", 20), fill="green")
-        print("Tous les fils connectés avec succès !")
-        # Jouer la musique victoire
         sound_victoire.play()
-        self.root.after(2000, self.root.quit)  # Fermer après 2 secondes
+        self.root.after(2000, self.root.quit)
 
     def update_timer(self):
         """Met à jour le chronomètre du jeu."""
@@ -231,11 +190,11 @@ class JeuDeCablage:
         remaining_time = self.time_limit - elapsed_time
 
         if remaining_time <= 0:
-            self.root.title("Temps écoulé !")
+            self.canvas.create_text(300, 250, text="Temps écoulé !", font=("Arial", 20), fill="red")  # Afficher le message
             sound_defaite.play()
             self.root.after(2000, self.root.quit)  # Fermer après 2 secondes
         else:
-            self.root.title(f"Mini-jeu : Câblage - Temps restant : {int(remaining_time)}s")
+            self.timer_label.config(text=f"Temps restant : {int(remaining_time)}s")
             self.root.after(1000, self.update_timer)
 
 # Lancer le jeu
