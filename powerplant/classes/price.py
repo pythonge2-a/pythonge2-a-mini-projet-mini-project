@@ -28,6 +28,6 @@ class KwhPrice: # génération des prix de l'électricité
     #retourne la demande en fonction du prix de vente en %
     def get_demand(self,day,sell_price) : 
         pr = self.get_price(day)
-        return pr/sell_price * 100 
+        return pr/sell_price
 
 
