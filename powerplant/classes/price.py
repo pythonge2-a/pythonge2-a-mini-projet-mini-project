@@ -22,20 +22,12 @@ class KwhPrice: # génération des prix de l'électricité
     def get_price(self, day): 
         if day < 0 : 
             raise IndexError("Erreur indice jour inférieur à 0")
-
+            
         return self.data[day%len(self.data)]
-    
 
-'''Exemple d'utilisation''''''
-from powerplant.price import KwhPrice 
+    #retourne la demande en fonction du prix de vente en %
+    def get_demand(self,day,sell_price) : 
+        pr = self.get_price(day)
+        return pr/sell_price * 100 
 
-def main():
-    file_path = "assets/kwh_price.csv"
-    kwh_price = KwhPrice(file_path)
-    print(kwh_price.get_price(0)) # prix du premier jour
-    print(kwh_price.get_price(2894)) # prix du dernier jour 
-    print(kwh_price.get_price(2895)) # prix du premier jour (rebouclement) 
-if __name__ == "__main__":
-    main()
 
-'''
