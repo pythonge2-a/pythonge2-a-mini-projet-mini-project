@@ -21,6 +21,10 @@ class production:
         self.dimension      = 100000    # Centrale dimensionnelle
         self.grandmere      = 1000000   # L'amour de grand-mère
 
+    def set_production_active(self, n):
+        self.production_active = n
+        return self.production_active
+
     def update_production_passive(self, nSinge, nHamster, nMoulin, nEolienne, nChampignon, nSolaire, nBiomasse, nNucleaire, nFusion, nAntiMatiere, nDyson, nDimension, nGrandmere):
         self.production_passive = nSinge*self.singe + nHamster*self.hamster + nMoulin*self.moulin + nEolienne*self.eolienne + nChampignon*self.champignon + nSolaire*self.solaire + nBiomasse*self.biomasse + nNucleaire*self.nucleaire + nFusion*self.fusion + nAntiMatiere*self.anti_matiere + nDyson*self.dyson + nDimension*self.dimension + nGrandmere*self.grandmere
         return self.production_passive
