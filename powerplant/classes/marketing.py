@@ -3,9 +3,13 @@
 # Calcul des gain/s en fonction de la demande
 
 class marketing:
-    def __init__(self, user_price):
-        self.user_price = user_price
+    def __init__(self):
+        self.user_price = 0
         self.bank = 0
+
+    def set_user_price(self, price):    #définit le prix de vente utilisateur
+        self.user_price = price
+        return self.user_price
 
     def get_user_price(self):   #retourne le prix de vente utilisateur
         return self.user_price
