@@ -3,7 +3,7 @@ from powerplant import *
 
 
 def main():
-    prix = KwhPrice('assets/kwh_price.csv')
+    prix = KwhPrice('../assets/kwh_price.csv')
     print(prix.get_price(30))
     
 
