@@ -9,10 +9,10 @@ import pygame
 pygame.mixer.init()
 
 # Charger le fichier audio avec un chemin absolu et une chaîne brute
-sound_victoire = pygame.mixer.Sound(r"assets\fichier_mp3\success-fanfare-trumpets-6185.mp3")
-sound_defaite = pygame.mixer.Sound(r"assets\fichier_mp3\failure-1-89170.mp3")
-sound_faux = pygame.mixer.Sound(r"assets\fichier_mp3\wrong-47985.mp3")
-sound_juste = pygame.mixer.Sound(r"assets\fichier_mp3\electric-155027.mp3")
+sound_victoire = pygame.mixer.Sound(r"..\assets\fichier_mp3\success-fanfare-trumpets-6185.mp3")
+sound_defaite = pygame.mixer.Sound(r"..\assets\fichier_mp3\failure-1-89170.mp3")
+sound_faux = pygame.mixer.Sound(r"..\assets\fichier_mp3\wrong-47985.mp3")
+sound_juste = pygame.mixer.Sound(r"..\assets\fichier_mp3\electric-155027.mp3")
 
 class JeuDeCablage:
     
