@@ -15,12 +15,17 @@ class SinusMatchingGame:
         
         # Configuration principale de la fenêtre
         self.frame = ctk.CTkFrame(root)
-        self.frame.pack(pady=20, padx=20, fill="both", expand=True)
+        self.frame.pack(pady=50, padx=50, fill="both", expand=True)
 
         # Génération de la courbe cible
         self.x_values = np.linspace(0, 1, 500)
-        self.target_amplitude = np.random.uniform(0.5, 2.0)
-        self.target_frequency = np.random.uniform(1.0, 3.0)
+        # Liste des valeurs possibles
+        possible_amplitudes = [0.5, 1.0, 1.5,2.0]
+        possible_frequencies = [1.0,1.5,2.0,2.5,3.0]
+
+        # Générer les valeurs restreintes
+        self.target_amplitude = np.random.choice(possible_amplitudes)
+        self.target_frequency = np.random.choice(possible_frequencies)
         self.target_y_values = generate_sinus(self.target_amplitude, self.target_frequency, self.x_values)
 
         # Initialisation des paramètres utilisateur
@@ -29,7 +34,7 @@ class SinusMatchingGame:
         self.user_y_values = generate_sinus(self.user_amplitude, self.user_frequency, self.x_values)
 
         # Création de la figure Matplotlib
-        self.fig, self.ax = plt.subplots(figsize=(5, 4))
+        self.fig, self.ax = plt.subplots(figsize=(10, 6))
         self.ax.set_title("Ajustez l'Amplitude et la Fréquence")
         self.ax.set_xlim(0, 1)
         self.ax.set_ylim(-2.5, 2.5)
@@ -42,11 +47,11 @@ class SinusMatchingGame:
         self.canvas_widget.pack()
 
         # Sliders pour ajuster amplitude et fréquence
-        self.amplitude_slider = ctk.CTkSlider(self.frame, from_=0.5, to=2.0, command=self.update_amplitude)
+        self.amplitude_slider = ctk.CTkSlider(self.frame, from_=0.5, to=2.0, command=self.update_amplitude, number_of_steps = 4)
         self.amplitude_slider.set(self.user_amplitude)
         self.amplitude_slider.pack(pady=10)
 
-        self.frequency_slider = ctk.CTkSlider(self.frame, from_=1.0, to=3.0, command=self.update_frequency)
+        self.frequency_slider = ctk.CTkSlider(self.frame, from_=1.0, to=3.0, command=self.update_frequency, number_of_steps = 5)
         self.frequency_slider.set(self.user_frequency)
         self.frequency_slider.pack(pady=10)
 
@@ -57,6 +62,9 @@ class SinusMatchingGame:
         # Label pour afficher le résultat
         self.result_label = ctk.CTkLabel(self.frame, text="Ajustez les valeurs pour correspondre à la courbe cible.")
         self.result_label.pack(pady=10)
+
+        # Gérer la fermeture proprement
+        self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def update_amplitude(self, value):
         self.user_amplitude = float(value)
@@ -78,11 +86,12 @@ class SinusMatchingGame:
         else:
             self.result_label.configure(text=f"Encore un peu... Différence: {diff:.2f}", text_color="red")
 
-# Lancement de l'application
-if __name__ == "__main__":
-    ctk.set_appearance_mode("System")  # Apparence claire ou sombre selon le système
-    ctk.set_default_color_theme("blue")
+    def on_close(self):
+        plt.close(self.fig)  # Fermer la figure Matplotlib
+        self.root.destroy()
 
+# Lancer le jeu
+if __name__ == "__main__":
     root = ctk.CTk()
-    app = SinusMatchingGame(root)
+    game = SinusMatchingGame(root)
     root.mainloop()
