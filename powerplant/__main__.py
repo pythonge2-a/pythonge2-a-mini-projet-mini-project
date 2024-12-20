@@ -1,9 +1,11 @@
 # Importantion de toutes les classes et méthodes
 from powerplant import *
+import os
 
 
 def main():
-    prix = KwhPrice('../assets/kwh_price.csv')
+    kwhCSV_path = os.path.join("assets", "kwh_price.csv")
+    prix = KwhPrice(kwhCSV_path)
     print(prix.get_price(30))
     
 
