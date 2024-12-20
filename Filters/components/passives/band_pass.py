@@ -1,6 +1,5 @@
 import math
 
-
 class BandPassFilter:
     @staticmethod
     def resonant_frequency(L, C):

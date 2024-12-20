@@ -1,6 +1,5 @@
 import math
 
-
 class HighPassFilter:
     @staticmethod
     def cutoff_frequency_rc(R, C):
