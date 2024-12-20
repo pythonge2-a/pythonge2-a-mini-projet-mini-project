@@ -21,6 +21,21 @@ class production:
         self.dimension      = 100000    # Centrale dimensionnelle
         self.grandmere      = 1000000   # L'amour de grand-mère
 
+        self.nSinge         = 0
+        self.nHamster       = 0
+        self.nMoulin        = 0
+        self.nEolienne      = 0
+        self.nChampignon    = 0
+        self.nSolaire       = 0
+        self.nBiomasse      = 0
+        self.nNucleaire     = 0
+        self.nFusion        = 0
+        self.nAntiMatiere   = 0
+        self.nDyson         = 0
+        self.nDimension     = 0
+        self.nGrandmere     = 0
+
+
     def set_production_active(self, n):
         self.production_active = n
         return self.production_active
