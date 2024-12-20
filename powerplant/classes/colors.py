@@ -1,7 +1,8 @@
 # Définition des couleurs
 # Palette Gruvbox : https://github.com/morhetz/gruvbox
 
-bg_color = "#282828"
+bgdark_color = "#282828"
+bglight_color = "#fbf1c7"
 fg_color = "#ebdbb2"
 red = "#cc241d"
 green = "#98971a"
