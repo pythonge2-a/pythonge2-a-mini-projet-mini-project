@@ -10,7 +10,7 @@
 - David Vuillemier
 
 ### Description du projet 
-Le but est de faire une librairie open source qui permet de calculer les différents paramètres ( &omega, r1,r2,c1,c2) de filtres actifs et passifs.
+Le but est de faire une librairie open source qui permet de calculer les différents paramètres (ω, r1,r2,c1,c2) de filtres actifs et passifs.
 Les filtres actifs seront traités avec des cellules à gain fixe (cellules de Sallen & Key) https://en.wikipedia.org/wiki/Sallen%E2%80%93Key_topology et pourront être de 3 types différents selon les besoins :
 - Tchebychev
 - Bessel
