@@ -1,5 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/oOQR1xPR)
-# Mini-projet PythonGE2 
+# Mini-projet PythonGE2
 ## Librairie "Pythonfilters"
 
 ### Membres du groupe :
@@ -9,7 +9,7 @@
 - Francisco Oliveira Barbosa
 - Maxime Otero
 
-### Description du projet 
+### Description du projet
 Le but est de faire une librairie open source qui permet de calculer les différents paramètres (w, r1,r2,c1,c2) d'un filtre passif.
 Les types de filtres abordés seront :
 - Tchebychev
