@@ -1,23 +1,26 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/oOQR1xPR)
-# Mini-projet PythonGE2
+# Mini-projet PythonGE2 
 ## Librairie "Pythonfilters"
 
 ### Membres du groupe :
-- David Vuillemier
-- Sébastien Pfister
 - Maxime Magnenat
 - Francisco Oliveira Barbosa
 - Maxime Otero
+- Sébastien Pfister
+- David Vuillemier
 
-### Description du projet
-Le but est de faire une librairie open source qui permet de calculer les différents paramètres (w, r1,r2,c1,c2) d'un filtre passif.
-Les types de filtres abordés seront :
+### Description du projet 
+Le but est de faire une librairie open source qui permet de calculer les différents paramètres (ω, r1,r2,c1,c2) de filtres actifs et passifs.
+Les filtres actifs seront traités avec des cellules à gain fixe (cellules de Sallen & Key) https://en.wikipedia.org/wiki/Sallen%E2%80%93Key_topology et pourront être de 3 types différents selon les besoins :
 - Tchebychev
 - Bessel
 - Butterworth
 
-Nous utliserons des cellules à gain fixe (Sallen & Key) qui permettront de réaliser des filtres à gains fixe de type passe-bas, passe-haut,
-passe-bande et coupe-bande.
+Avec évidemment pour chacun la possibilité de faire des filtres :
+- Passe-bas
+- Passe-haut
+- Passe-bande
+- Coupe-bande.
 
 ### Fonctionnalités
 Notre bibliothèque se découpera sous la forme de fonctions prenant en paramètre le type de filtre, les pulsations voulues, etc....
