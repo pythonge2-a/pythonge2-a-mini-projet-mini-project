@@ -26,6 +26,8 @@ class PriceFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.kwh_stock = 0
+
         # add widgets onto the frame
         self.price_label = customtkinter.CTkLabel(self, text="fr -----")
         self.price_label.pack(pady=10)
@@ -47,7 +49,12 @@ class PriceFrame(customtkinter.CTkFrame):
 
         self.uranium_button = customtkinter.CTkRadioButton(self, text="uranium", variable=self.radio_var, value="uranium")
         self.uranium_button.grid(row=5, column=1, padx=10, pady=5, sticky="w")
-   
+    
+    def set_kwh_stock(self, kwh):
+        self.kwh_stock = kwh
+        self.kwh_label.configure(text=f"{self.kwh_stock} kWh")
+        return self.kwh_stock
+
 class StockFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
@@ -89,13 +96,14 @@ class MarketingFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.price = 1 # Prix de base
+        self.selling_price = 1 # Prix de base
+        self.stock_max = 0
 
         # add widgets onto the frame
         self.invest_label = customtkinter.CTkLabel(self, text="Marketing :")
         self.invest_label.grid(row=0,column=0, padx=10, pady=15, sticky="w")
 
-        self.price_label = customtkinter.CTkLabel(self, text="--- fr")
+        self.price_label = customtkinter.CTkLabel(self, text="1 fr")
         self.price_label.grid(row=1,column=0,padx=5,pady=5)
 
         self.increasePrice_button = customtkinter.CTkButton(
@@ -132,16 +140,24 @@ class MarketingFrame(customtkinter.CTkFrame):
     
     # Mise à jour du prix
     def update_price_label(self):
-        self.price_label.configure(text=f"{self.price} fr")
+        self.price_label.configure(text=f"{self.selling_price} fr")
 
     def increase_price(self):
-        self.price += 1
+        self.selling_price += 1
         self.update_price_label()
 
     def decrease_price(self):
-        if self.price > 1:  # Empêche d'avoir un prix négatif
-            self.price -= 1
+        if self.selling_price > 1:  # Empêche d'avoir un prix négatif
+            self.selling_price -= 1
         self.update_price_label()
+
+    def get_selling_price(self):
+        return self.selling_price
+    
+    def set_stock_max(self, stock):
+        self.stock_max = stock
+        self.stockMax_label.configure(text=f"Stock {self.stock_max} /max")
+        return self.stock_max
 
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -164,4 +180,3 @@ class App(customtkinter.CTk):
 
         self.my_frame = MainFrame(master=self)
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-    
