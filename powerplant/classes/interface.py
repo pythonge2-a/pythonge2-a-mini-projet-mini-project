@@ -197,23 +197,4 @@ class App(customtkinter.CTk):
         self.my_frame.marketing_frame.update_pstk()
         self.my_frame.price_frame.update_mk()
 
-    def loop(self):
-
-        demand = 20
-        self.update_game()
-        if self.my_frame.price_frame.kwh_stock > 0:
-            prix_vente = self.my_frame.marketing_frame.selling_price
-            unite_vendue = self.my_frame.price_frame.kwh_stock * demand / 100
-
-            if self.my_frame.price_frame.kwh_stock < 1: #forcer la vente si le stock est inférieur à 1
-                unite_vendue = self.my_frame.price_frame.kwh_stock
-
-            gain = prix_vente * unite_vendue
-            self.my_frame.price_frame.kwh_stock -= unite_vendue
-            self.my_frame.price_frame.money += gain
-
-        self.after(1000, self.loop)
-
-    def run(self):
-        self.loop()
-        self.mainloop()
+    
