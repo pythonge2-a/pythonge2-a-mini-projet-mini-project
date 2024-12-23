@@ -1,3 +1,4 @@
+# point à améliorer: stopper le chronomètre lorsqu'on a gagné pour éviter que le message defaite s'affiche
 
 import customtkinter as ctk
 import time
@@ -29,14 +30,18 @@ class JeuDeCablage:
         
         # Augmenter la taille du jeu (nombre de points, taille des cercles, etc.)
         nb_points = 6  # Nombre de points de départ et d'arrivée
-        canvas_height = (nb_points + 1) * 150  # Augmenter la hauteur du canevas
+        canvas_height = (nb_points + 1) * 110  # Augmenter la hauteur du canevas
         canvas_width = 850  # Augmenter la largeur du canevas
 
         # Ajuster la hauteur de la fenêtre pour qu'elle soit plus grande
         window_height = canvas_height + 150  # Ajuster l'espace pour le timer et autres éléments (augmenté à 150px)
 
-        # Appliquer la taille de la fenêtre
-        self.root.geometry(f"{canvas_width}+{window_height}")
+        # Centrer la fenêtre
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        x_position = (screen_width - canvas_width) // 2
+        y_position = (screen_height - window_height) // 2
+        self.root.geometry(f"{canvas_width}x{window_height}+{x_position}+{y_position}")
 
         # Timer
         self.time_limit = nb_points * 3  # secondes
@@ -58,7 +63,7 @@ class JeuDeCablage:
         self.canvas.pack()
 
         # Points de départ et d'arrivée
-        self.start_points = [(100, y * 150) for y in range(1, nb_points + 1)]  # Espacement plus large entre les points
+        self.start_points = [(100, y * 115) for y in range(1, nb_points + 1)]  # Espacement plus large entre les points
         random.shuffle(self.start_points)
 
         # Points d'arrivée et Points led (y associés aux y des points A)
