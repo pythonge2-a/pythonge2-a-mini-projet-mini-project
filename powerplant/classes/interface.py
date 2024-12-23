@@ -1,5 +1,5 @@
 import customtkinter
-from . import colors
+from . import *
 
 class MainFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -30,11 +30,10 @@ class PriceFrame(customtkinter.CTkFrame):
         self.money = 0
 
         # add widgets onto the frame
-        self.price_label = customtkinter.CTkLabel(self, text="fr -----")
-        self.price_label.pack(pady=10)
-        self.price_label.grid(row=0,column=0, sticky="w")
+        self.price_label = customtkinter.CTkLabel(self, text="fr -----",width=300,anchor="w")
+        self.price_label.grid(row=0,column=0,padx=10,pady=15,sticky="w",)
 
-        self.kwh_label = customtkinter.CTkLabel(self, text="///// kWh")
+        self.kwh_label = customtkinter.CTkLabel(self, text="///// kWh",width=300,anchor="w")
         self.kwh_label.grid(row=1,column=0,padx=10,pady=15,sticky="w")
 
         self.radio_var = customtkinter.StringVar(value="coal")  # variable pour 
@@ -60,8 +59,8 @@ class PriceFrame(customtkinter.CTkFrame):
         return self.money
     
     def update_mk(self):
-        self.price_label.configure(text=f"{self.money} fr")
-        self.kwh_label.configure(text=f"{self.kwh_stock} kWh")
+        self.price_label.configure(text=f"Avaible Funds : {self.money:4f} fr")
+        self.kwh_label.configure(text=f"Unsold Stock : {self.kwh_stock:4f} kWh")
 
 
 class StockFrame(customtkinter.CTkFrame):
@@ -152,12 +151,12 @@ class MarketingFrame(customtkinter.CTkFrame):
         self.price_label.configure(text=f"{self.selling_price} fr")
 
     def increase_price(self):
-        self.selling_price += 1
+        self.selling_price += 0.01
         self.update_price_label()
 
     def decrease_price(self):
-        if self.selling_price > 1:  # Empêche d'avoir un prix négatif
-            self.selling_price -= 1
+        if self.selling_price > 0.01:  # Empêche d'avoir un prix négatif
+            self.selling_price -= 0.01
         self.update_price_label()
 
     def get_selling_price(self):
@@ -193,13 +192,26 @@ class App(customtkinter.CTk):
 
         self.my_frame = MainFrame(master=self)
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-    
+
     def update_game(self):
         self.my_frame.marketing_frame.update_pstk()
         self.my_frame.price_frame.update_mk()
 
     def loop(self):
+
+        demand = 20
         self.update_game()
+        if self.my_frame.price_frame.kwh_stock > 0:
+            prix_vente = self.my_frame.marketing_frame.selling_price
+            unite_vendue = self.my_frame.price_frame.kwh_stock * demand / 100
+
+            if self.my_frame.price_frame.kwh_stock < 1: #forcer la vente si le stock est inférieur à 1
+                unite_vendue = self.my_frame.price_frame.kwh_stock
+
+            gain = prix_vente * unite_vendue
+            self.my_frame.price_frame.kwh_stock -= unite_vendue
+            self.my_frame.price_frame.money += gain
+
         self.after(1000, self.loop)
 
     def run(self):
