@@ -6,7 +6,7 @@ def main():
 
     kwhCSV_path = os.path.join("assets", "kwh_price.csv")
     prix = KwhPrice(kwhCSV_path) #prix du jour
-    '''
+    
     market = marketing() # Gestion du marketing
     storage = Storage() # Gestion du stockage
 
@@ -18,8 +18,7 @@ def main():
     
     app.my_frame.price_frame.set_kwh_stock(storage.stock)
     app.my_frame.marketing_frame.set_stock_max(storage.stock_max)
-    app.my_frame.price_frame.set_money(market.bank)'''
-    app = App()
+    app.my_frame.price_frame.set_money(market.bank)
     app.mainloop()    
 
 if __name__ == "__main__":
