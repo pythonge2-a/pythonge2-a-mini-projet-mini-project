@@ -89,6 +89,8 @@ class MarketingFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
+        self.price = 1 # Prix de base
+
         # add widgets onto the frame
         self.invest_label = customtkinter.CTkLabel(self, text="Marketing :")
         self.invest_label.grid(row=0,column=0, padx=10, pady=15, sticky="w")
@@ -99,6 +101,7 @@ class MarketingFrame(customtkinter.CTkFrame):
         self.increasePrice_button = customtkinter.CTkButton(
             master=self,
             text="+",
+            command=self.increase_price,
             corner_radius=10,  # Set the corner radius to half the height for a circular shape
             width=20,  # Make the button square for a true circle
             height=20,
@@ -109,6 +112,7 @@ class MarketingFrame(customtkinter.CTkFrame):
         self.decreasePrice_button = customtkinter.CTkButton(
             master=self,
             text="-",
+            command=self.decrease_price,
             corner_radius=10,  # Set the corner radius to half the height for a circular shape
             width=20,  # Make the button square for a true circle
             height=20,
@@ -125,7 +129,19 @@ class MarketingFrame(customtkinter.CTkFrame):
 
         self.stockMax_label = customtkinter.CTkLabel(self, text="Stock --- /max")
         self.stockMax_label.grid(row=2,column=0, sticky="w")
+    
+    # Mise à jour du prix
+    def update_price_label(self):
+        self.price_label.configure(text=f"{self.price} fr")
 
+    def increase_price(self):
+        self.price += 1
+        self.update_price_label()
+
+    def decrease_price(self):
+        if self.price > 1:  # Empêche d'avoir un prix négatif
+            self.price -= 1
+        self.update_price_label()
 
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -138,8 +154,6 @@ class MyFrame(customtkinter.CTkFrame):
         self.button1.grid(row=1,column=0,padx=10)
     def button1_action(self) :
         self.button1.configure(state="disabled", text="womp womp")
-
-
 
 class App(customtkinter.CTk):
     def __init__(self):
