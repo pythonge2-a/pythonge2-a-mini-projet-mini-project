@@ -1,6 +1,7 @@
 # Importantion de toutes les classes et méthodes
 from powerplant import *
 import os
+import time
 
 def main():
 
@@ -19,7 +20,9 @@ def main():
     app.my_frame.price_frame.set_kwh_stock(storage.stock)
     app.my_frame.marketing_frame.set_stock_max(storage.stock_max)
     app.my_frame.price_frame.set_money(market.bank)
-    app.mainloop()    
+
+    app.run()
+
 
 if __name__ == "__main__":
     main()

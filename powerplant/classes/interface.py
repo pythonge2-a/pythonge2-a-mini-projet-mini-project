@@ -53,13 +53,15 @@ class PriceFrame(customtkinter.CTkFrame):
     
     def set_kwh_stock(self, kwh):
         self.kwh_stock = kwh
-        self.kwh_label.configure(text=f"{self.kwh_stock} kWh")
         return self.kwh_stock
+    
     def set_money(self, money):
         self.money = money
-        self.price_label.configure(text=f"{self.money} fr")
         return self.money
     
+    def update_mk(self):
+        self.price_label.configure(text=f"{self.money} fr")
+        self.kwh_label.configure(text=f"{self.kwh_stock} kWh")
 
 
 class StockFrame(customtkinter.CTkFrame):
@@ -163,8 +165,11 @@ class MarketingFrame(customtkinter.CTkFrame):
     
     def set_stock_max(self, stock):
         self.stock_max = stock
-        self.stockMax_label.configure(text=f"Stock {self.stock_max} /max")
         return self.stock_max
+    
+    def update_pstk(self):
+        self.stockMax_label.configure(text=f"{self.stock_max} /max")
+        self.update_price_label()
 
 class MyFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -175,6 +180,7 @@ class MyFrame(customtkinter.CTkFrame):
         self.label.grid(row=0, column=0, padx=10)
         self.button1 = customtkinter.CTkButton(self, text="bouton 1", command=self.button1_action)
         self.button1.grid(row=1,column=0,padx=10)
+
     def button1_action(self) :
         self.button1.configure(state="disabled", text="womp womp")
 
@@ -187,3 +193,15 @@ class App(customtkinter.CTk):
 
         self.my_frame = MainFrame(master=self)
         self.my_frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+    
+    def update_game(self):
+        self.my_frame.marketing_frame.update_pstk()
+        self.my_frame.price_frame.update_mk()
+
+    def loop(self):
+        self.update_game()
+        self.after(1000, self.loop)
+
+    def run(self):
+        self.loop()
+        self.mainloop()
