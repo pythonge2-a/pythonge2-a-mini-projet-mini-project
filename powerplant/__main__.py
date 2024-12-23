@@ -19,9 +19,8 @@ def main():
     app.my_frame.price_frame.set_kwh_stock(storage.stock)
     app.my_frame.marketing_frame.set_stock_max(storage.stock_max)
     app.my_frame.price_frame.set_money(market.bank)'''
-    
-    #app = App()
-    #app.mainloop()    
+    app = App()
+    app.mainloop()    
 
 if __name__ == "__main__":
     main()
