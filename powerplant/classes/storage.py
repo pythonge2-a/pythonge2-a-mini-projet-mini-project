@@ -1,6 +1,6 @@
 # gère le stockage de l'énergie produite par les différentes sources d'énergie
 
-class storage :
+class Storage :
     def __init__(self):
         self.stock = 0
         self.stock_max = 1000

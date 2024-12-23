@@ -1,5 +1,5 @@
 import customtkinter
-import colors
+from . import colors
 
 class MainFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -27,6 +27,7 @@ class PriceFrame(customtkinter.CTkFrame):
         super().__init__(master, **kwargs)
 
         self.kwh_stock = 0
+        self.money = 0
 
         # add widgets onto the frame
         self.price_label = customtkinter.CTkLabel(self, text="fr -----")
@@ -54,6 +55,12 @@ class PriceFrame(customtkinter.CTkFrame):
         self.kwh_stock = kwh
         self.kwh_label.configure(text=f"{self.kwh_stock} kWh")
         return self.kwh_stock
+    def set_money(self, money):
+        self.money = money
+        self.price_label.configure(text=f"{self.money} fr")
+        return self.money
+    
+
 
 class StockFrame(customtkinter.CTkFrame):
     def __init__(self, master, **kwargs):

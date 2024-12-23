@@ -10,3 +10,4 @@ from .invest import *
 from .marketing import *
 from .price import *
 from .production import *
+from .storage import *
