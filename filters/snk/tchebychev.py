@@ -1,4 +1,18 @@
+import numpy as np
+
+
+
+
+
+
+
 class Tchebychev:
+    def transfer_function(omega, R1, R2, C1, C2):
+    j = 1j  # Nombre complexe
+    numerator = (j * omega) ** 2 * C1 * C2 * R1 * R2
+    denominator = 1 + j * omega * R1 * (C1 + C2) + (j * omega) ** 2 * C1 * C2 * R1 * R2
+    return numerator / denominator
+
     def __init__(self):
         # Initialisation dynamique des ordres
         self.orders = {}
