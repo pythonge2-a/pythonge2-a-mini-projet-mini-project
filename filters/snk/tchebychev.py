@@ -1,11 +1,5 @@
 import numpy as np
 
-
-
-
-
-
-
 class Tchebychev:
     def transfer_function(omega, R1, R2, C1, C2):
     j = 1j  # Nombre complexe
