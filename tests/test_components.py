@@ -6,17 +6,6 @@ class TestTchebychevFilters(unittest.TestCase):
     def test_lowpass_order2(self):
         call_str = "filters.snk.tchebychev.lp.order2(f=2500, C1=1e-6, C2=2e-6)"
         print(f"\nEntrée : {call_str}")
-=======
-
-##from filters import Filters
-from filters.passives import BandPassFilter
-
-
-class TestComponents(unittest.TestCase):
-
-    def setUp(self):
-        self.filters = Filters()
->>>>>>> aa374c32ceb40b83f37cfd087a3ad5fa299573a8
 
         result = filters.snk.tchebychev.lp.order2(
             f=2500,
