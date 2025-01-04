@@ -1,7 +1,12 @@
-from snk.bessel import Lowpass
+from .band_pass import BandPassFilter
+from .band_stop import BandStopFilter
+from .low_pass import LowPassFilter
+from .high_pass import HighPassFilter
 
-if __name__ == "__main__":
-    lowpass_filter = Lowpass()
-    tf, params = lowpass_filter.sallen_key_lowpass(2, 1000, r1=1000, r2=1000)
-    print("Fonction de transfert :", tf)
-    print("Paramètres calculés :", params)
+# Définir ce qui est exposé publiquement par ce sous-module
+__all__ = [
+    "BandPassFilter",
+    "BandStopFilter",
+    "LowPassFilter",
+    "HighPassFilter",
+]

@@ -32,7 +32,7 @@ class BandPassFilter:
         """
         if L == 0 or C == 0:
             raise ValueError("Inductance and capacitance must be non-zero.")
-        return 1 / R * math.sqrt(L / C)
+        return math.sqrt(L / C) / R
 
     @staticmethod
     def bandwidth(resonant_frequency, quality_factor):
