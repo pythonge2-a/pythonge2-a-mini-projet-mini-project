@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 # __init__.py
 import butterworth as bt
 import bessel as bl
@@ -14,3 +16,4 @@ for i, stage in enumerate(stages):
     print(f"Stage {i+1}:")
     print("Fonction de transfert :", stage['tf'])
     print("Paramètres :", stage['params'])
+>>>>>>> aa374c32ceb40b83f37cfd087a3ad5fa299573a8

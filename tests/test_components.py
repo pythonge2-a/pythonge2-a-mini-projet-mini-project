@@ -1,25 +1,42 @@
 import unittest
+<<<<<<< HEAD
+import filters.snk.tchebychev  # On importe le module complet
 
+<<<<<<< HEAD
 from filters import Filters
+=======
+class TestTchebychevFilters(unittest.TestCase):
+    def test_lowpass_order2(self):
+        call_str = "filters.snk.tchebychev.lp.order2(f=2500, C1=1e-6, C2=2e-6)"
+        print(f"\nEntrée : {call_str}")
 
-class TestComponents(unittest.TestCase):
+        result = filters.snk.tchebychev.lp.order2(
+            f=2500,
+            C1=1e-6,
+            C2=2e-6
+        )
+        print("Sortie :", result)
+>>>>>>> 90221da6a753ab6761dfb8a6a7da353b4cdb5a83
 
-    def setUp(self):
-        self.filters = Filters()
+        self.assertEqual(result["order"], 2)
+        self.assertEqual(result["filter_type"], "lp")
+        self.assertIn("components", result)
 
-    def test_tchebychev_order_2(self):
-        # Définitions des entrées
-        r1, r2, c1, c2 = 1000, 2000, 1e-6, 2e-6
-        print(f"\nFonction : filters.snk.tchebychev.2.components")
-        print(f"Entrée : r1={r1}, r2={r2}, c1={c1}, c2={c2}")
+    def test_highpass_order2(self):
+        call_str = "filters.snk.tchebychev.hp.order2(f=5000, C1=1e-6, C2=1.5e-6)"
+        print(f"\nEntrée : {call_str}")
 
-        # Appel de la méthode
-        result = getattr(self.filters.snk.tchebychev, "2").components(r1, r2, c1, c2)
-        print(f"Sortie : {result}\n")
+        result = filters.snk.tchebychev.hp.order2(
+            f=5000,
+            C1=1e-6,
+            C2=1.5e-6
+        )
+        print("Sortie :", result)
 
-        # Résultat attendu
-        expected_result = {"R1": 2000, "R2": 4000, "C1": 2e-06, "C2": 4e-06}
-        self.assertEqual(result, expected_result)
+        self.assertEqual(result["order"], 2)
+        self.assertEqual(result["filter_type"], "hp")
+        self.assertIn("components", result)
+
 
 if __name__ == "__main__":
     unittest.main()
