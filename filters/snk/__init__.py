@@ -6,8 +6,8 @@ lowpass = bl.Lowpass()
 highpass = bl.Highpass()
 
 # Spécifier les résistances et calculer les condensateurs
-r_vals = [3300,1000,1000,2200,1000,1000]
-tf, stages = lowpass.multiple_order_lowpass(order=6, cutoff_freq=20000, r_vals=r_vals)
+c_vals = [1e-6,1e-9,1e-6,1e-9]
+tf, stages = highpass.multiple_order_highpass(order=4, cutoff_freq=1000, c_vals=c_vals)
 
 print("Fonction de transfert combinée :", tf)
 for i, stage in enumerate(stages):

@@ -4,8 +4,7 @@ from scipy.signal import TransferFunction
 
 class Lowpass:
 # Initialisation de la classe Lowpass avec les pôles de Bessel.
-    def __init__(self):
-        
+    def __init__(self):    
         self.BESSEL_TABLE = {
             1: [(1.0, 0.0)],
             2: [(1.2723, 0.577)],
