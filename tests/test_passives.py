@@ -1,7 +1,7 @@
 import unittest
 from filters.passives import BandPassFilter
 
-
+ # ENCORE AJOUTER LES TESTS POUR LES AUTRES METHODES DE LA CLASSE
 class TestBandPassFilter(unittest.TestCase):
 
     def test_band_pass(self):
