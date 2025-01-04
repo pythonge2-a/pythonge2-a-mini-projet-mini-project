@@ -1,50 +1,20 @@
-import math
-import csv
-import os
-
-_PARAM_TABLE = {}
-
-def _load_csv_params():
-    # On part du principe que le CSV est dans docs/table.csv
-    csv_path = os.path.join("docs", "table.csv")
-    with open(csv_path, newline='', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        header = next(reader, None)
-
-        for row in reader:
-            if not row:
-                continue
-            try:
-                ordre = int(row[0])
-            except ValueError:
-                continue
-
-            # On lit dans les 2 dernières colonnes => Tchebychev (r=1 dB) wk/wr, Qk
-            wkwr_str = row[-2].strip()
-            qk_str   = row[-1].strip()
-
-            if wkwr_str not in ["-", ""] and qk_str not in ["-", ""]:
-                try:
-                    wkwr_val = float(wkwr_str)
-                    qk_val   = float(qk_str)
-                    _PARAM_TABLE[ordre] = {"wkwr": wkwr_val, "qk": qk_val}
-                except ValueError:
-                    pass
-
-def get_params_for_order(ordre):
-    """
-    Renvoie { "wkwr": <float>, "qk": <float> } pour l'ordre demandé.
-    Lève KeyError si l'ordre n'est pas dans _PARAM_TABLE.
-    """
-    return _PARAM_TABLE[ordre]
-
-# On charge le CSV dès l'import
-_load_csv_params()
+import numpy as np
 
 
-class FilterType:
-    def __init__(self, filter_type):
-        self.filter_type = filter_type
+
+
+
+
+
+class Tchebychev:
+    def transfer_function(omega, R1, R2, C1, C2):
+    j = 1j  # Nombre complexe
+    numerator = (j * omega) ** 2 * C1 * C2 * R1 * R2
+    denominator = 1 + j * omega * R1 * (C1 + C2) + (j * omega) ** 2 * C1 * C2 * R1 * R2
+    return numerator / denominator
+
+    def __init__(self):
+        # Initialisation dynamique des ordres
         self.orders = {}
 
     def __getattr__(self, name):
