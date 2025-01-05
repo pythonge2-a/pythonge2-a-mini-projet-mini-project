@@ -1,4 +1,9 @@
+from . import butterworth as bt
+from . import bessel as bl
 
+
+
+'''
 # __init__.py
 import butterworth as bt
 import bessel as bl
@@ -15,4 +20,4 @@ for i, stage in enumerate(stages):
     print(f"Stage {i+1}:")
     print("Fonction de transfert :", stage['tf'])
     print("Paramètres :", stage['params'])
-
+'''

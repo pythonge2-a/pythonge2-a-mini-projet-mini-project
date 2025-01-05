@@ -91,7 +91,7 @@ class FilterBase:
                     f"C1={c1:.1e}, R1={r1:.1f}"
                 )
 
-        print("--- Fin des calculs pour les cellules ---\n")
+        print("--- Fin des calculs pour les cellules ---")
         return resistances
 
 
