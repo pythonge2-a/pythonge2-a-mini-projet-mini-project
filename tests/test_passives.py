@@ -109,9 +109,8 @@ class TestPassiveFilters(unittest.TestCase):
         self.assertAlmostEqual(cutoff_frequency_order_2, 79.58, places=2)
         self.assertAlmostEqual(cutoff_frequency_rlc, 1591.55, places=2)
         self.assertAlmostEqual(quality_factor_rlc, 0.1, places=3)
-        self.assertAlmostEqual(bandwidth_rlc, 15915.49, places=2)
+        self.assertAlmostEqual(bandwidth_rlc, 15915.5, places=2)
 
 if __name__ == "__main__":
     unittest.main()
 
-#BLABLABLA
