@@ -39,22 +39,37 @@ class LowPassFilter:
         return 1 / (2 * math.pi * math.sqrt(R1 * R2 * C1 * C2))
 
     @staticmethod
-    def quality_factor(R1, R2, C1, C2):
+    def cutoff_frequency_rlc(L, C):
         """
-        Calculate the quality factor of a low-pass RLC filter (order 2).
+        Calculate the cutoff frequency of a low-pass RLC filter.
 
         Parameters:
-        R1 (float): Resistance 1 in ohms
-        R2 (float): Resistance 2 in ohms
-        C1 (float): Capacitance 1 in farads
-        C2 (float): Capacitance 2 in farads
+        L (float): Inductance in henries
+        C (float): Capacitance in farads
+
+        Return:
+        float: Cutoff frequency
+        """
+        if L <= 0 or C <= 0:
+            raise ValueError("Inductance and capacitance must be positive.")
+        return 1 / (2 * math.pi * math.sqrt(L * C))
+
+    @staticmethod
+    def quality_factor_rlc(R, L, C):
+        """
+        Calculate the quality factor of a low-pass RLC filter.
+
+        Parameters:
+        R (float): Resistance in ohms
+        L (float): Inductance in henries
+        C (float): Capacitance in farads
 
         Return:
         float: Quality factor (unitless)
         """
-        if R1 <= 0 or R2 <= 0 or C1 <= 0 or C2 <= 0:
-            raise ValueError("Resistances and capacitances must be positive.")
-        return math.sqrt(R2 / R1) * math.sqrt(C1 / C2)
+        if R <= 0 or L <= 0 or C <= 0:
+            raise ValueError("Resistance, inductance, and capacitance must be positive.")
+        return math.sqrt(L / C) / R
 
     @staticmethod
     def bandwidth(cutoff_frequency, quality_factor):

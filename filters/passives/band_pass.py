@@ -52,12 +52,12 @@ class BandPassFilter:
         return math.sqrt(L / C) / R
 
     @staticmethod
-    def bandwidth(resonant_frequency, quality_factor):
+    def bandwidth(order_2_resonant_frequency, quality_factor):
         """
         Calculate the bandwidth of a band-pass RLC filter.
 
         Parameters:
-            resonant_frequency (float): Resonant frequency in Hz.
+            order_2_resonant_frequency (float): Resonant frequency in Hz.
             quality_factor (float): Quality factor (unitless).
 
         Returns:
@@ -65,4 +65,4 @@ class BandPassFilter:
         """
         if quality_factor == 0:
             raise ValueError("Quality factor must be non-zero.")
-        return resonant_frequency / quality_factor
+        return order_2_resonant_frequency / quality_factor
